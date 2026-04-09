@@ -3,7 +3,7 @@
     <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">
         <button class="shrink-0 cursor-pointer" href="/">
-            <img src="" alt="Your Company" class="size-8" />
+            <img src="/img/gtw.jpg" alt="Your Company" class="size-8" />
         </button>
         <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
