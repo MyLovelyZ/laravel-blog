@@ -18,7 +18,7 @@ Route::get('/posts', function () {
 });
 
 Route::get('/posts/{post:slug}', function (Post $post) {
-    return view('post', ['title' => $post->title . ' By ' . $post->author->name, 'post' => $post]);
+    return view('post', ['title' => $post->title, 'post' => $post]);
 });
 
 Route::get('/about', function () {
