@@ -12,9 +12,16 @@ Route::get('/', function () {
 
 Route::get('/posts', function () {
     // $posts = Post::with(['author', 'category'])->latest()->get();
-    $posts = Post::all(); // ambil semua
-    $posts = Post::latest()->get(); // ambil semua dengan urutan terbaru
-    return view('posts', ['title' => 'Blog', 'posts' => $posts]);
+    $posts = Post::latest(); // ambil semua
+    // $posts = Post::latest()->get(); // ambil semua dengan urutan terbaru
+    if(request('search')) {
+        $search = request('search');
+        $posts->where('title', 'like', '%' . $search . '%')
+            ->orWhereHas('category', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            });
+    };
+    return view('posts', ['title' => 'Blog', 'posts' => $posts->get()]);
 });
 
 Route::get('/posts/{post:slug}', function (Post $post) {
